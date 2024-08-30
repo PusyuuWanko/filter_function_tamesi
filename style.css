@@ -30,6 +30,7 @@ body::before {
   background: rgba(0,255,100,0.5);
   padding: 20px;
   margin: 5px;
+  overflow: auto;
 }
 
 #systemForm {
@@ -47,4 +48,10 @@ body::before {
   color: #00ffaa;
   border-left: 10px solid #00ff00;
   padding: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  #disp > div {
+    width: 100%;
+  }
 }
