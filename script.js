@@ -14,7 +14,7 @@ window.addEventListener("DOMContentLoaded", function() {
   const disp = document.getElementById("disp");
   const inputEle = document.getElementById("query");
   msg.innerHTML = "";
-  disp.innerHTML = "ロード中・・・";
+  disp.innerHTML = '<p style="background: #00ff00; padding: 10px;">ロード中・・・</p>';
   function handlePostDisp() {
     disp.innerHTML = "";
     if (getFetchData) {
