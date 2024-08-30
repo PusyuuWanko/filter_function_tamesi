@@ -1,4 +1,4 @@
-let getFetchData = [];
+let getFetchData = []; //関数で環境変数の代わりをしてもよいが、このように環境変数を設定して行う方法もある。
 let msgData = "";
 
 fetch("https://jsonplaceholder.typicode.com/posts").then((res)=> res.json()).then((data)=> {
@@ -20,10 +20,25 @@ window.addEventListener("DOMContentLoaded", function() {
     if (getFetchData) {
       msgData = "data found!!";
       const filterData = getFetchData.filter((item)=>item.body.includes(inputEle.value));
-      let result = filterData.length > 0 ? filterData : getFetchData;
+      let isFirst = true;
+      let result = [];
+      if (filterData.length > 0) {
+        isFirst = false;
+        result = filterData;
+      } else {
+        const postData = isFirst ? filterData : getFetchData;
+        if (postData.length > 0) {
+          result = postData;
+        } else {
+          result = [];
+          disp.innerHTML = '<p style="background: #fff; padding: 10px;">no post.</p>';
+          msgData = "post not found.";
+        }
+      } // filterDataの値で真偽を判定したなら内容の長さで判断するのが良い、今回の場合だと、[]の配列があり事実上真が帰ってくるため期待した動作にならないということです。
       if (result) {
         result.map(function(postInfo) {
           console.log(
+            /* 今日の学び　\n は文字列として追加する必要がある、あの一言言わせてください、独学じゃそういうものです。お金はらって専門学校言ってる方にはわからないかもしれませんが独学はそういうものです。 */
             postInfo.userId + "\n" +
             postInfo.title + "\n" +
             postInfo.body
@@ -34,7 +49,7 @@ window.addEventListener("DOMContentLoaded", function() {
               "タイトル：" + postInfo.title + "<br />" +
               "投稿：" + postInfo.body +
             "</div>"
-          ;           
+          ; // なんとなくわかるがメモ、innerHTMLとtextContentは、HTMLを書くならinerHTMLで書かないとHTMLにならない。
         });
       }
     } else {
@@ -48,7 +63,7 @@ window.addEventListener("DOMContentLoaded", function() {
     handlePostDisp();
   });
   setInterval(()=> {
-    console.log(msgData);
-    msg.innerHTML = msgData;
+    console.log("system msg：" + msgData);
+    msg.innerHTML = "system msg：" + msgData;
   }, 1000);
 });

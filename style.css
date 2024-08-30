@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+  margin: 0;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("./bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat; 
+  z-index: -1;
+}
+
+#disp {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center
+}
+#disp > div {
+  width: 25vw;
+  height: 500px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(0,255,100,0.5);
+  padding: 20px;
+  margin: 5px;
+}
+
+#systemForm {
+  display: flex;
+  flex-direction: column;
+}
+#systemForm > input,
+#systemForm > i {
+  margin: 5px;
+}
+#systemForm > input {
+  padding: 5px;
+}
+#systemForm > i {
+  color: #00ffaa;
+  border-left: 10px solid #00ff00;
+  padding: 10px;
+}
